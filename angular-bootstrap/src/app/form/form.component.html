@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Agende seu horário</h1>
+
+  <form>
+    <!--Nome-->
+    <div class="form-floating mb-3 ">
+      <input type="text" class="form-control"
+      id="name"
+      required >
+      <label for="name" >Nome</label>
+    </div>
+    <!--Validação do nome-->
+    <div>
+      <p class="invalid-feedback">Preencha este campo.</p>
+    </div>
+    <!--E-mail-->
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control email" id="email" required email>
+      <label for="email">Email</label>
+    </div>
+    <!--Telefone (Rever validação)-->
+    <div class="form-floating mb-3">
+      <input type="tel" class="form-control email" id="telefone" required>
+      <label for="telefone">Telefone</label>
+    </div>
+    <!--Serviço-->
+    <div class="form-floating mb-3">
+      <select name="servico" id="servico" class="form-select" required>
+        <option selected disabled>Selecione</option>
+        <option value="1">Escova
+        </option>
+        <option value="2">Massagem
+        </option>
+        <option value="3">Unha
+        </option>
+        <option value="4">Corte
+        </option>
+      </select>
+      <label for="servico">Qual serviço deseja agendar?</label>
+    </div>
+    <!--Data-->
+    <div class="form-floating mb-3">
+      <input class="form-control" type="date" id="date" required>
+      <label for="date">Escolha a data</label>
+    </div>
+    <!--Horário-->
+    <div class="form-floating mb-3">
+      <input class="form-control" type="time" id="time" min="09:00" max="18:00" required>
+      <label for="time">Escolha o horário</label>
+    </div>
+    <!--Submit-->
+    <button type="submit" class="btn btn-outline-secondary mb-3">Agendar</button>
+  </form>
+
+
+</div>
