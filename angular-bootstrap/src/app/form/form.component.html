@@ -1,28 +1,40 @@
 <div class="container">
   <h1>Agende seu horário</h1>
 
-  <form>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="needs-validation">
     <!--Nome-->
-    <div class="form-floating mb-3 ">
+    <div class="form-floating mb-3" >
+
       <input type="text" class="form-control"
-      id="name"
-      required >
-      <label for="name" >Nome</label>
+      id="name" name="name" ngModel required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched" [class.is-valid]="nome.valid && nome.touched">
+
+      <label for="name" class="form-label ">Nome</label>
+
+      <!--Validação do nome-->
+      <div *ngIf="!nome.valid" class="invalid-feedback" >
+         <p >
+        Preencha este campo.</p>
+      </div>
     </div>
-    <!--Validação do nome-->
-    <div>
-      <p class="invalid-feedback">Preencha este campo.</p>
-    </div>
+
     <!--E-mail-->
     <div class="form-floating mb-3">
-      <input type="email" class="form-control email" id="email" required email>
+      <input type="email" class="form-control email" id="email" name="email" ngModel required email #email="ngModel" [class.is-invalid]="!email.valid && email.touched" [class.is-valid]="email.valid">
       <label for="email">Email</label>
+      <div *ngIf="email.invalid"class="invalid-feedback">
+        <p>Preencha este campo com um e-mail válido.</p>
+      </div>
     </div>
+
     <!--Telefone (Rever validação)-->
     <div class="form-floating mb-3">
-      <input type="tel" class="form-control email" id="telefone" required>
+      <input type="tel" minlength="8"maxlength="11"class="form-control" id="telefone"name= "telefone" ngModel required #telefone="ngModel" [class.is-invalid]="!telefone.valid && telefone.touched"[class.is-valid]="telefone.valid">
       <label for="telefone">Telefone</label>
+      <div *ngIf="telefone.invalid" class="invalid-feedback">
+        <p>Preencha este campo com um telefone válido.</p>
+      </div>
     </div>
+
     <!--Serviço-->
     <div class="form-floating mb-3">
       <select name="servico" id="servico" class="form-select" required>
@@ -48,9 +60,13 @@
       <input class="form-control" type="time" id="time" min="09:00" max="18:00" required>
       <label for="time">Escolha o horário</label>
     </div>
-    <!--Submit-->
+
+
+
     <button type="submit" class="btn btn-outline-secondary mb-3">Agendar</button>
+
   </form>
 
 
 </div>
+
