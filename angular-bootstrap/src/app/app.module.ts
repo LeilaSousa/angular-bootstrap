@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './products/products.component';
 import { FormComponent } from './form/form.component';
 import { HomeConteudoComponent } from './home-conteudo/home-conteudo.component';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HomeConteudoComponent } from './home-conteudo/home-conteudo.component';
     FooterComponent,
     ProductsComponent,
     FormComponent,
-    HomeConteudoComponent
+    HomeConteudoComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

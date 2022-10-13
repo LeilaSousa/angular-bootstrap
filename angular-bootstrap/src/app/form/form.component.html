@@ -1,12 +1,12 @@
 <div class="container">
   <h1>Agende seu horário</h1>
 
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="needs-validation">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
     <!--Nome-->
     <div class="form-floating mb-3" >
 
       <input type="text" class="form-control"
-      id="name" name="name" ngModel required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched" [class.is-valid]="nome.valid && nome.touched">
+      id="name" name="name" ngModel required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched" [class.is-valid]="nome.valid">
 
       <label for="name" class="form-label ">Nome</label>
 
@@ -37,7 +37,7 @@
 
     <!--Serviço-->
     <div class="form-floating mb-3">
-      <select name="servico" id="servico" class="form-select" required>
+      <select name="servico" id="servico" class="form-select" required ngModel #servico="ngModel" [class.is-invalid]="!servico.valid && servico.touched"[class.is-valid]="servico.valid">
         <option selected disabled>Selecione</option>
         <option value="1">Escova
         </option>
@@ -49,21 +49,24 @@
         </option>
       </select>
       <label for="servico">Qual serviço deseja agendar?</label>
+      <div *ngIf="!servico.valid" class="invalid-feedback"><p>Escolha um serviço</p></div>
     </div>
     <!--Data-->
     <div class="form-floating mb-3">
-      <input class="form-control" type="date" id="date" required>
-      <label for="date">Escolha a data</label>
+      <input class="form-control" type="date" id="date" name="date" ngModel #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [class.is-valid]="date.valid" required>
+      <label for="date" class="form-label">Escolha a data</label>
+      <div *ngIf="date.invalid" class="invalid-feedback"><p>Escolha uma data</p></div>
     </div>
-    <!--Horário-->
+    <!--Horário (falta incluir min e max)-->
     <div class="form-floating mb-3">
-      <input class="form-control" type="time" id="time" min="09:00" max="18:00" name="horaio"required>
-      <label for="time">Escolha o horário</label>
+      <input class="form-control" type="time" id="time" name="time" ngModel   #time="ngModel" [class.is-invalid]="!time.valid && time.touched" [class.is-valid]="time.valid " required>
+      <label for="time">Escolha um horário</label>
+      <div *ngIf="!time.valid" class="invalid-feedback"><p>Escolha um horário</p></div>
     </div>
 
 
 
-    <button type="submit" class="btn btn-secondary mb-3" [disabled]="f.invalid">Agendar</button>
+    <button type="submit" class="btn btn-secondary mb-3" [disabled]="f.invalid" routerLink="/success">Agendar</button>
 
   </form>
 
