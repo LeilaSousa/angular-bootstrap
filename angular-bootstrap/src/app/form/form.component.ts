@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class FormComponent implements OnInit {
 
   onSubmit(form:any){
-console.log(form)
+    console.log(form)
   }
 
   constructor() {

@@ -53,22 +53,22 @@
       <label for="servico">Qual serviço deseja agendar?</label>
       <div *ngIf="verificaValidTouched(servico)" [ngClass]="aplicaCssErro(servico)"><p>Escolha um serviço</p></div>
     </div>
-    <!--Data Continuar daqui-->
+    <!--Data-->
     <div class="form-floating mb-3">
-      <input class="form-control" type="date" id="date" name="date" ngModel #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [class.is-valid]="date.valid" required>
+      <input class="form-control" type="date" id="date" name="date" ngModel #date="ngModel" required [ngClass]="aplicaCssErro(date)">
       <label for="date" class="form-label">Escolha a data</label>
-      <div *ngIf="date.invalid" class="invalid-feedback"><p>Escolha uma data</p></div>
+      <div *ngIf="verificaValidTouched(date)"[ngClass]="aplicaCssErro(date)"><p>Escolha uma data</p></div>
     </div>
     <!--Horário (falta incluir min e max)-->
     <div class="form-floating mb-3">
-      <input class="form-control" type="time" id="time" name="time" ngModel   #time="ngModel" [class.is-invalid]="!time.valid && time.touched" [class.is-valid]="time.valid " required>
+      <input class="form-control" type="time" id="time" name="time" ngModel   #time="ngModel" required [ngClass]="aplicaCssErro(time)">
       <label for="time">Escolha um horário</label>
-      <div *ngIf="!time.valid" class="invalid-feedback"><p>Escolha um horário</p></div>
+      <div *ngIf="verificaValidTouched(time)"[ngClass]="aplicaCssErro(time)"><p>Escolha um horário</p></div>
     </div>
 
 
 
-    <button type="submit" class="btn btn-secondary mb-3" [disabled]="f.invalid" routerLink="/success">Agendar</button>
+    <button type="submit" class="btn btn-secondary mb-3" [disabled]="f.invalid" >Agendar</button>
 
   </form>
 
