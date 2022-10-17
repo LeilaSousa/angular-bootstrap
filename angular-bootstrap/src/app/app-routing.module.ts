@@ -10,7 +10,7 @@ import { FormComponent } from './form/form.component'
 import { SuccessComponent } from './success/success.component'
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'form', component: FormComponent },
   { path: 'success', component: SuccessComponent  }

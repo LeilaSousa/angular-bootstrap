@@ -1,43 +1,45 @@
 <div class="container">
   <h1>Agende seu horário</h1>
 
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)"   >
     <!--Nome-->
-    <div class="form-floating mb-3" >
+    <div class="form-floating mb-3"
+    >
 
       <input type="text" class="form-control"
-      id="name" name="name" ngModel required #nome="ngModel" [class.is-invalid]="!nome.valid && nome.touched" [class.is-valid]="nome.valid">
-
+      id="name" name="name" ngModel required #name="ngModel" [ngClass]="aplicaCssErro(name)">
       <label for="name" class="form-label ">Nome</label>
-
-      <!--Validação do nome-->
-      <div *ngIf="!nome.valid" class="invalid-feedback" >
-         <p >
-        Preencha este campo.</p>
+      <!--Msg validação-->
+      <div *ngIf="verificaValidTouched(name)"[ngClass]="aplicaCssErro(name)">
+        Preencha este campo.
       </div>
+
     </div>
 
     <!--E-mail-->
     <div class="form-floating mb-3">
-      <input type="email" class="form-control email" id="email" name="email" ngModel required email #email="ngModel" [class.is-invalid]="!email.valid && email.touched" [class.is-valid]="email.valid">
+      <input type="email" class="form-control " id="email" name="email" ngModel required email #email="ngModel"
+      [ngClass]="aplicaCssErro(email)">
       <label for="email">Email</label>
-      <div *ngIf="email.invalid"class="invalid-feedback">
-        <p>Preencha este campo com um e-mail válido.</p>
+      <!--Msg validação-->
+      <div *ngIf="verificaValidTouched(email)" [ngClass]="aplicaCssErro(email)">
+        Preencha este campo com um e-mail válido.
       </div>
     </div>
 
     <!--Telefone (Rever validação)-->
     <div class="form-floating mb-3">
-      <input type="tel" minlength="8"maxlength="11"class="form-control" id="telefone"name= "telefone" ngModel required #telefone="ngModel" [class.is-invalid]="!telefone.valid && telefone.touched"[class.is-valid]="telefone.valid">
-      <label for="telefone">Telefone</label>
-      <div *ngIf="telefone.invalid" class="invalid-feedback">
+      <input type="tel" minlength="8"maxlength="11"class="form-control" id="tel"name="tel" ngModel required #tel="ngModel" [ngClass]="aplicaCssErro(tel)">
+      <label for="tel">Telefone</label>
+      <!--msg de validação-->
+      <div *ngIf="verificaValidTouched(tel)" [ngClass]="aplicaCssErro(tel)">
         <p>Preencha este campo com um telefone válido.</p>
       </div>
     </div>
 
-    <!--Serviço-->
+    <!--Serviço -->
     <div class="form-floating mb-3">
-      <select name="servico" id="servico" class="form-select" required ngModel #servico="ngModel" [class.is-invalid]="!servico.valid && servico.touched"[class.is-valid]="servico.valid">
+      <select name="servico" id="servico" class="form-select" required ngModel #servico="ngModel" [ngClass]="aplicaCssErro(servico)">
         <option selected disabled>Selecione</option>
         <option value="1">Escova
         </option>
@@ -49,9 +51,9 @@
         </option>
       </select>
       <label for="servico">Qual serviço deseja agendar?</label>
-      <div *ngIf="!servico.valid" class="invalid-feedback"><p>Escolha um serviço</p></div>
+      <div *ngIf="verificaValidTouched(servico)" [ngClass]="aplicaCssErro(servico)"><p>Escolha um serviço</p></div>
     </div>
-    <!--Data-->
+    <!--Data Continuar daqui-->
     <div class="form-floating mb-3">
       <input class="form-control" type="date" id="date" name="date" ngModel #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [class.is-valid]="date.valid" required>
       <label for="date" class="form-label">Escolha a data</label>
