@@ -1,74 +1,76 @@
 <div class="container">
   <h1>Agende seu horário</h1>
 
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)"   >
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" >
     <!--Nome-->
     <div class="form-floating mb-3"
+    [ngClass]="aplicaCssErro('nome')"
     >
-
       <input type="text" class="form-control"
-      id="name" name="name" ngModel required #name="ngModel" [ngClass]="aplicaCssErro(name)">
+      id="name" formControlName="nome" >
       <label for="name" class="form-label ">Nome</label>
       <!--Msg validação-->
-      <div *ngIf="verificaValidTouched(name)"[ngClass]="aplicaCssErro(name)">
-        Preencha este campo.
-      </div>
-
+      <p *ngIf="verificaValidTouched('nome')">Preencha este campo.</p>
     </div>
 
     <!--E-mail-->
-    <div class="form-floating mb-3">
-      <input type="email" class="form-control " id="email" name="email" ngModel required email #email="ngModel"
-      [ngClass]="aplicaCssErro(email)">
+    <div class="form-floating mb-3"
+    [ngClass]="aplicaCssErro('email')">
+      <input type="email" class="form-control " id="email" formControlName="email">
       <label for="email">Email</label>
       <!--Msg validação-->
-      <div *ngIf="verificaValidTouched(email)" [ngClass]="aplicaCssErro(email)">
-        Preencha este campo com um e-mail válido.
-      </div>
+      <p *ngIf="verificaValidTouched('email')">
+        Preencha este campo.
+      </p>
+      <p *ngIf="verificaEmailValido()">
+        Digite ume-mail válido.
+
+      </p>
+
     </div>
 
-    <!--Telefone (Rever validação)-->
-    <div class="form-floating mb-3">
-      <input type="tel" minlength="8"maxlength="11"class="form-control" id="tel"name="tel" ngModel required #tel="ngModel" [ngClass]="aplicaCssErro(tel)">
+    <!--Telefone (Incluir pattern de telefone)-->
+    <div class="form-floating mb-3" [ngClass]="aplicaCssErro('tel')">
+      <input type="tel" class="form-control" id="tel" formControlName="tel" >
       <label for="tel">Telefone</label>
       <!--msg de validação-->
-      <div *ngIf="verificaValidTouched(tel)" [ngClass]="aplicaCssErro(tel)">
-        <p>Preencha este campo com um telefone válido.</p>
+      <div *ngIf="verificaValidTouched('tel')">
+        Preencha este campo com um telefone válido.
       </div>
     </div>
 
-    <!--Serviço -->
-    <div class="form-floating mb-3">
-      <select name="servico" id="servico" class="form-select" required ngModel #servico="ngModel" [ngClass]="aplicaCssErro(servico)">
+    <!--Serviço-->
+    <div class="form-floating mb-3" [ngClass]="aplicaCssErro('servico')">
+      <select name="servico" id="servico" class="form-select" formControlName="servico">
         <option selected disabled>Selecione</option>
-        <option value="1">Escova
+        <option value="Esc">Escova
         </option>
-        <option value="2">Massagem
+        <option value="Mas">Massagem
         </option>
-        <option value="3">Unha
+        <option value="Unh">Unha
         </option>
-        <option value="4">Corte
+        <option value="Cor">Corte
         </option>
       </select>
       <label for="servico">Qual serviço deseja agendar?</label>
-      <div *ngIf="verificaValidTouched(servico)" [ngClass]="aplicaCssErro(servico)"><p>Escolha um serviço</p></div>
+      <div *ngIf="verificaValidTouched('servico')">Escolha um serviço</div>
     </div>
-    <!--Data-->
-    <div class="form-floating mb-3">
-      <input class="form-control" type="date" id="date" name="date" ngModel #date="ngModel" required [ngClass]="aplicaCssErro(date)">
+    <!--Data (Incluir validação de data)-->
+    <div class="form-floating mb-3"
+    [ngClass]="aplicaCssErro('data')">
+      <input class="form-control" type="date" id="date" formControlName="data">
       <label for="date" class="form-label">Escolha a data</label>
-      <div *ngIf="verificaValidTouched(date)"[ngClass]="aplicaCssErro(date)"><p>Escolha uma data</p></div>
+      <div *ngIf="verificaValidTouched('data')">Escolha uma data</div>
     </div>
     <!--Horário (falta incluir min e max)-->
-    <div class="form-floating mb-3">
-      <input class="form-control" type="time" id="time" name="time" ngModel   #time="ngModel" required [ngClass]="aplicaCssErro(time)">
+    <div class="form-floating mb-3"[ngClass]="aplicaCssErro('hora')">
+      <input class="form-control" type="time" id="time" formControlName="hora">
       <label for="time">Escolha um horário</label>
-      <div *ngIf="verificaValidTouched(time)"[ngClass]="aplicaCssErro(time)"><p>Escolha um horário</p></div>
+      <div *ngIf="verificaValidTouched('hora')">Escolha um horário</div>
     </div>
 
 
-
-    <button type="submit" class="btn btn-secondary mb-3" [disabled]="f.invalid" >Agendar</button>
+    <button type="submit" class="btn btn-secondary mb-3" [disabled]="formulario.invalid" >Agendar</button>
 
   </form>
 

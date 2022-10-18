@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule,Validators } from '@angular/forms';
+
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,29 +12,45 @@ import { Component, OnInit } from '@angular/core';
 
 export class FormComponent implements OnInit {
 
-  onSubmit(form:any){
-    console.log(form)
-  }
+  formulario:FormGroup;
 
-  constructor() {
-  }
+  constructor(
+    private formBuilder:FormBuilder,
+    private router: Router ){
 
-  ngOnInit(): void {
+    this.formulario = this.formBuilder.group({
+      nome: [null, [ Validators.required ]],
+      email: [null, [ Validators.required, Validators.email ]],
+      tel: [null, [Validators.required]],
+      servico: [null,[Validators.required]],
+      data:[null, [Validators.required]],
+      hora:[null, [Validators.required]],
 
-
+    });
     }
 
-    verificaValidTouched(campo:any){
-      return !campo.valid && campo.touched;
+  ngOnInit(): void {  }
+
+  onSubmit(){
+      console.log(this.formulario.value);
+      this.router.navigate(['/success'])
     }
 
-    aplicaCssErro(campo: any){
+  verificaValidTouched(campo:string){
+      return this.formulario.get(campo)?.invalid && this.formulario.get(campo)?.touched;
+    }
+
+  aplicaCssErro(campo: string){
     return{
       'is-invalid': this.verificaValidTouched(campo),
       'invalid-feedback': this.verificaValidTouched(campo)
-
     }
   }
- }
-
+  verificaEmailValido(){
+      let campoEmail = this.formulario.get('email');
+      if (campoEmail?.errors){
+        return campoEmail.errors['email']
+      }
+    }
+  }
 
