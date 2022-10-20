@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder,ReactiveFormsModule,Validators } from '@angular/forms';
+import { Component, OnInit, ElementRef,Input } from '@angular/core';
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
@@ -12,7 +12,10 @@ import { Router } from '@angular/router';
 
 export class FormComponent implements OnInit {
 
-  formulario:FormGroup;
+  @Input() formulario:FormGroup;
+  
+
+
 
   constructor(
     private formBuilder:FormBuilder,
@@ -29,7 +32,11 @@ export class FormComponent implements OnInit {
     });
     }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {
+
+
+
+   }
 
   onSubmit(){
       console.log(this.formulario.value);
@@ -52,5 +59,7 @@ export class FormComponent implements OnInit {
         return campoEmail.errors['email']
       }
     }
+
+
   }
 

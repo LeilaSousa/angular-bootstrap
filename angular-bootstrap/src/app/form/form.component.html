@@ -7,11 +7,15 @@
     [ngClass]="aplicaCssErro('nome')"
     >
       <input type="text" class="form-control"
-      id="name" formControlName="nome" >
-      <label for="name" class="form-label ">Nome</label>
+      id="name" formControlName="nome">
+      <label for="name" class="form-label "
+
+      >Nome</label>
       <!--Msg validação-->
       <p *ngIf="verificaValidTouched('nome')">Preencha este campo.</p>
+      
     </div>
+
 
     <!--E-mail-->
     <div class="form-floating mb-3"
@@ -74,6 +78,5 @@
 
   </form>
 
-
-</div>
+  </div>
 
