@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input  } from '@angular/core';
+import { FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-success',
@@ -8,7 +8,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class SuccessComponent implements OnInit {
 
-  formulario?:FormGroup;
+  @Input() formulario?:FormGroup;
+  @Input() user:any
 
   constructor() {
 

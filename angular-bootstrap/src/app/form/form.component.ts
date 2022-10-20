@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef,Input } from '@angular/core';
+import { Component, OnInit, ElementRef,Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
 
 export class FormComponent implements OnInit {
 
-  @Input() formulario:FormGroup;
-  
+  @Output() formulario:FormGroup;
+
+  @Output() user: any =''
 
 
 
@@ -21,7 +22,7 @@ export class FormComponent implements OnInit {
     private formBuilder:FormBuilder,
     private router: Router ){
 
-    this.formulario = this.formBuilder.group({
+      this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required ]],
       email: [null, [ Validators.required, Validators.email ]],
       tel: [null, [Validators.required]],
@@ -32,15 +33,26 @@ export class FormComponent implements OnInit {
     });
     }
 
+
+
+
   ngOnInit(): void {
 
+   }
 
 
+
+   salvaDados(){
+    this.user = this.formulario.get('nome')?.value
    }
 
   onSubmit(){
       console.log(this.formulario.value);
-      this.router.navigate(['/success'])
+      this.router.navigate(['/success']);
+      this.salvaDados()
+
+
+
     }
 
   verificaValidTouched(campo:string){
@@ -59,7 +71,6 @@ export class FormComponent implements OnInit {
         return campoEmail.errors['email']
       }
     }
-
 
   }
 
