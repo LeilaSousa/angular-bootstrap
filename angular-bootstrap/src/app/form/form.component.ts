@@ -12,10 +12,8 @@ import { Router } from '@angular/router';
 
 export class FormComponent implements OnInit {
 
-  @Output() formulario:FormGroup;
 
-  @Output() user: any =''
-
+ formulario:FormGroup;
 
 
   constructor(
@@ -42,14 +40,12 @@ export class FormComponent implements OnInit {
 
 
 
-   salvaDados(){
-    this.user = this.formulario.get('nome')?.value
-   }
+
 
   onSubmit(){
       console.log(this.formulario.value);
       this.router.navigate(['/success']);
-      this.salvaDados()
+
 
 
 
